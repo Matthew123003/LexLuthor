@@ -1,0 +1,123 @@
+Lexer Class Breakdown
+
+1. Lexer Class:
+
+    Purpose: To tokenize an HTML string, breaking it into meaningful components
+     like tags, attributes, and text.
+
+2. Token Enum:
+
+    Purpose: Defines the types of tokens the lexer can identify.
+    Tokens:
+        TAG: Matches HTML tags (e.g., <html>).
+        ATTRIBUTE: Matches HTML attributes (e.g., class="example").
+        TEXT: Matches text outside of tags.
+        SKIP: Matches whitespace, which should be ignored.
+    Pattern: Each token type has a corresponding regular expression pattern.
+
+3. Word Class:
+
+    Purpose: Represents a token and its matched lexeme (the actual string from the input).
+    Attributes:
+        Token token: The type of token.
+        String lexeme: The actual text matched by the token.
+
+4. lex Method:
+
+    Purpose: The core method that performs the lexing (tokenization) process.
+    Steps:
+        Token Patterns: Concatenate all token patterns into a single regular expression.
+        Matching Tokens: Use the combined pattern to match tokens in the input string.
+        Collect Tokens: For each match, determine the type of token and add it to the list of words.
+
+5. readFile Method:
+
+    Purpose: Reads the content of a file into a string.
+    Steps:
+        Opens the file and reads its content line by line.
+        Appends each line to a StringBuilder.
+        Returns the entire file content as a single string.
+
+6. main Method:
+
+    Purpose: The entry point of the program.
+    Steps:
+        Reads the content of an HTML file.
+        Passes the content to the lex method to tokenize it.
+        Prints each token to the console.
+
+Lexer2 Class Breakdown
+
+1. Lexer2 Class:
+
+    Purpose: Another lexer implementation, presumably for a different or more specific
+     tokenization purpose.
+
+2. Token Class:
+
+    Purpose: Represents tokens with types and values.
+    TokenType Enum: Defines various token types like EOI, KEYWORD, STRING, DIGIT, INVALID.
+
+3. TestNextToken Class:
+
+    Purpose: Contains methods for manually lexing a string one character at a time.
+    Attributes:
+        buffer: The input string as a character array.
+        idx: Current index in the buffer.
+        maxlen: Length of the buffer.
+        ch: Current character being processed.
+
+4. nextChar Method:
+
+    Purpose: Moves to the next character in the buffer.
+    Steps: Increments the index and returns the next character.
+
+5. testGetNextToken Method:
+
+    Purpose: Tests the lexing process by matching the next token against an expected type.
+    Steps:
+        Converts the test string to a character array.
+        Initializes the first character.
+        Calls getNextToken to retrieve the next token.
+        Compares the retrieved token type with the target type.
+
+6. getNextToken Method:
+
+    Purpose: Retrieves the next token from the input.
+    Steps:
+        Checks for the end of input.
+        Identifies and returns tokens based on the current character.
+        Handles tags, strings, digits, and whitespace.
+        Returns INVALID for unrecognized characters.
+
+Main Method in Lexer2 Class
+
+1. Purpose:
+
+    Demonstrates how to use the TestNextToken class to tokenize a string.
+
+2. Steps:
+
+    Initializes a Lexer2 object and a TestNextToken object.
+    Sets a test string to tokenize.
+    Continuously calls getNextToken until the end of input.
+    Prints each token.
+
+How They Work Together
+
+    Lexer Class:
+        Reads an HTML file.
+        Tokenizes the file content into Word objects based on defined patterns.
+        Prints the tokens.
+
+    Lexer2 Class:
+        Manually tokenizes a given string.
+        Uses a character-by-character approach to identify tokens.
+        Can test if a string matches an expected token type.
+
+Both Lexer and Lexer2 classes provide mechanisms to break down strings into meaningful
+components (tokens), but they differ in their implementation approaches. Lexer uses regular
+ expressions for token patterns, while Lexer2 uses manual character-by-character processing to identify tokens.
+
+This detailed breakdown should help you understand how the classes interact and achieve their
+purpose of lexing (tokenizing) input strings.
